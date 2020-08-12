@@ -2,11 +2,23 @@
 
 namespace ChainsOfResponsibility
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var orc = new Monster("Orc", 3, 3, 3);
+            Console.WriteLine("{3} = A:{0}, D:{1}, L:{2}"
+                , orc.Atack, orc.Def, orc.Hp,
+                orc.Name);
+
+            var root = new MonsterModifier(orc);
+            root.Add(new Weapon(orc));
+            root.Add(new Armor(orc));
+            root.Handle();
+
+            Console.WriteLine("{3} = A:{0}, D:{1}, L:{2}"
+                , orc.Atack, orc.Def, orc.Hp,
+                orc.Name);
         }
     }
 }
